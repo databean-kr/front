@@ -1,257 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DATABEAN - DATAMON</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
-    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <style>
-        body {
-            display: flex;
-            padding: 0px;
-            margin: 0px;
-        }
-    </style>
-</head>
-<body>
-    <aside class="mdc-drawer mdc-drawer--modal">
-        <div class="mdc-drawer__content">
-            <nav class="mdc-list">
-                <a class="mdc-list-item mdc-list-item--activated" href="#" tabindex="0" aria-current="page" onclick="">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
-                    <span class="mdc-list-item__text">DASHBOARD</span>
-                </a>
-                <a class="mdc-list-item mdc-list-item--activated" href="#" tabindex="0" aria-current="page" onclick="">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
-                    <span class="mdc-list-item__text">AUTOGET</span>
-                </a>
-                <a class="mdc-list-item" href="#" tabindex="0">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
-                    <span class="mdc-list-item__text">Outgoing</span>
-                </a>
-                <a class="mdc-list-item" href="#" tabindex="0">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-                    <span class="mdc-list-item__text">Drafts</span>
-                </a>
-            </nav>
-        </div>
-    </aside>
-    <div class="mdc-drawer-scrim"></div>
-    <div class="mdc-drawer-app-content">
-        <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
-            <div class="mdc-top-app-bar__row">
-                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-                    <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-                    <span class="mdc-top-app-bar__title">DATAMON</span>
-                </section>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>DATABEAN - DATAMON</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <style>
+            body {
+                display: flex;
+                padding: 0px;
+                margin: 0px;
+            }
+            .card__title {
+                font-family: Roboto, sans-serif;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                font-size: 1.25rem;
+                line-height: 2rem;
+                font-weight: 500;
+                letter-spacing: .0125em;
+                text-decoration: inherit;
+                text-transform: inherit;
+            }
+            .card__subhead {
+                font-family: Roboto, sans-serif;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                font-size: .875rem;
+                line-height: 1.25rem;
+                font-weight: 400;
+                letter-spacing: .0178571429em;
+                text-decoration: inherit;
+                text-transform: inherit;
+                opacity: .6;
+            }
+        </style>
+    </head>
+    <body>
+        <aside class="mdc-drawer mdc-drawer--modal">
+            <div class="mdc-drawer__content">
+                <nav class="mdc-list">
+                    <a class="mdc-list-item mdc-list-item--activated" href="#" tabindex="0" aria-current="page" onclick="">
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+                        <span class="mdc-list-item__text">DASHBOARD</span>
+                    </a>
+                    <a class="mdc-list-item mdc-list-item--activated" href="#" tabindex="0" aria-current="page" onclick="">
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+                        <span class="mdc-list-item__text">AUTOGET</span>
+                    </a>
+                    <a class="mdc-list-item" href="#" tabindex="0">
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                        <span class="mdc-list-item__text">Outgoing</span>
+                    </a>
+                    <a class="mdc-list-item" href="#" tabindex="0">
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+                        <span class="mdc-list-item__text">Drafts</span>
+                    </a>
+                </nav>
             </div>
-        </header>
-        <main class="mdc-top-app-bar--fixed-adjust">
-            <!-- HOSTS -->
-            <div id="dashboard-host-table" class="mdc-data-table">
-                <div class="mdc-data-table__table-container">
-                    <table width="100%" class="mdc-data-table__table" aria-label="Dessert calories">
-                        <thead>
-                            <tr class="mdc-data-table__header-row">
-                                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Host</th>
-                                <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Applications</th>
-                                <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Items</th>
-                                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody class="mdc-data-table__content">
-                            <tr class="mdc-data-table__row">
-                                <th class="mdc-data-table__cell" scope="row">Frozen yogurt</th>
-                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
-                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.0</td>
-                                <td class="mdc-data-table__cell">Super tasty</td>
-                            </tr>
-                            <tr class="mdc-data-table__row">
-                                <th class="mdc-data-table__cell" scope="row">Ice cream sandwich</th>
-                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">37</td>
-                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.33333333333</td>
-                                <td class="mdc-data-table__cell">I like ice cream more</td>
-                            </tr>
-                            <tr class="mdc-data-table__row">
-                                <th class="mdc-data-table__cell" scope="row">Eclair</th>
-                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
-                                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">6.0</td>
-                                <td class="mdc-data-table__cell">New filing flavor</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        </aside>
+        <div class="mdc-drawer-scrim"></div>
+        <div class="mdc-drawer-app-content">
+            <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
+                <div class="mdc-top-app-bar__row">
+                    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+                        <span class="mdc-top-app-bar__title">DATAMON</span>
+                    </section>
                 </div>
-                <div class="mdc-data-table__pagination">
-                    <div class="mdc-data-table__pagination-trailing">
-                        <div class="mdc-data-table__pagination-rows-per-page">
-                            <div class="mdc-data-table__pagination-rows-per-page-label">
-                                Rows per page
-                            </div>
-                            <div class="mdc-select mdc-select--outlined mdc-select--no-label mdc-data-table__pagination-rows-per-page-select">
-                                <div class="mdc-select__anchor" role="button" aria-haspopup="listbox" aria-labelledby="demo-pagination-select" tabindex="0">
-                                    <span id="demo-pagination-select" class="mdc-select__selected-text">10</span>
-                                    <span class="mdc-select__dropdown-icon">
-                                        <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5">
-                                            <polygon class="mdc-select__dropdown-icon-inactive" stroke="none" fill-rule="evenodd" points="7 10 12 15 17 10"></polygon>
-                                            <polygon class="mdc-select__dropdown-icon-active" stroke="none" fill-rule="evenodd" points="7 15 12 10 17 15"></polygon>
-                                        </svg>
-                                    </span>
-                                    <span class="mdc-notched-outline mdc-notched-outline--notched">
-                                        <span class="mdc-notched-outline__leading"></span>
-                                        <span class="mdc-notched-outline__trailing"></span>
-                                    </span>
+            </header>
+            <main class="mdc-top-app-bar--fixed-adjust">
+                <!-- HOSTS -->
+                <div id="dashboard-host-table" class="mdc-data-table">
+                    <div class="mdc-data-table__table-container">
+                        <table width="100%" class="mdc-data-table__table" aria-label="Dessert calories">
+                            <thead>
+                                <tr class="mdc-data-table__header-row">
+                                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">HOST (ARCH)</th>
+                                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">CONTAINERS</th>
+                                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">ITEMS</th>
+                                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody class="mdc-data-table__content" id="dashboard-host-table-tbody">
+                            </tbody>
+                        </table>
+                        <script>
+                            function dashboard_host_table_row(name, info) {
+                                return `<tr class="mdc-data-table__row">
+                                    <th class="mdc-data-table__cell" scope="row">${name.toUpperCase()} (${info.Architecture})</th>
+                                    <td class="mdc-data-table__cell">
+                                        <div class="mdc-chip-set" role="grid">
+                                            <div class="mdc-chip" role="row" style="border-radius: 4px;">
+                                                <div class="mdc-chip__ripple" style="border-radius: 4px;"></div>
+                                                <span role="gridcell">
+                                                    <span role="button" tabindex="0" class="mdc-chip__primary-action">
+                                                        <span class="mdc-chip__text">TOTAL: ${info.Containers}</span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <div class="mdc-chip" role="row" style="border-radius: 4px;">
+                                                <div class="mdc-chip__ripple" style="border-radius: 4px;"></div>
+                                                <span role="gridcell">
+                                                    <span role="button" tabindex="-1" class="mdc-chip__primary-action">
+                                                        <span class="mdc-chip__text">RUNNING: ${info.ContainersRunning}</span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <div class="mdc-chip" role="row" style="border-radius: 4px;">
+                                                <div class="mdc-chip__ripple" style="border-radius: 4px;"></div>
+                                                <span role="gridcell">
+                                                    <span role="button" tabindex="-1" class="mdc-chip__primary-action">
+                                                        <span class="mdc-chip__text">PAUSE: ${info.ContainersPaused}</span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <div class="mdc-chip" role="row" style="border-radius: 4px;">
+                                                <div class="mdc-chip__ripple" style="border-radius: 4px;"></div>
+                                                <span role="gridcell">
+                                                    <span role="button" tabindex="-1" class="mdc-chip__primary-action">
+                                                        <span class="mdc-chip__text">STOP: ${info.ContainersStopped}</span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="mdc-data-table__cell"></td>
+                                    <td class="mdc-data-table__cell"></td>
+                                </tr>`;
+                            }
+                        </script>
+                    </div>
+                    <div class="mdc-data-table__pagination">
+                        <div class="mdc-data-table__pagination-trailing">
+                            <div class="mdc-data-table__pagination-rows-per-page">
+                                <div class="mdc-data-table__pagination-rows-per-page-label">
+                                    Rows per page
                                 </div>
-                                <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth" role="listbox">
-                                    <ul class="mdc-list">
-                                        <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" role="option" data-value="10">
-                                            <span class="mdc-list-item__text">10</span>
-                                        </li>
-                                        <li class="mdc-list-item" role="option" data-value="25">
-                                            <span class="mdc-list-item__text">25</span>
-                                        </li>
-                                        <li class="mdc-list-item" role="option" data-value="100">
-                                            <span class="mdc-list-item__text">100</span>
-                                        </li>
-                                    </ul>
+                                <div class="mdc-select mdc-select--outlined mdc-select--no-label mdc-data-table__pagination-rows-per-page-select">
+                                    <div class="mdc-select__anchor" role="button" aria-haspopup="listbox" aria-labelledby="demo-pagination-select" tabindex="0">
+                                        <span id="demo-pagination-select" class="mdc-select__selected-text">10</span>
+                                        <span class="mdc-select__dropdown-icon">
+                                            <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5">
+                                                <polygon class="mdc-select__dropdown-icon-inactive" stroke="none" fill-rule="evenodd" points="7 10 12 15 17 10"></polygon>
+                                                <polygon class="mdc-select__dropdown-icon-active" stroke="none" fill-rule="evenodd" points="7 15 12 10 17 15"></polygon>
+                                            </svg>
+                                        </span>
+                                        <span class="mdc-notched-outline mdc-notched-outline--notched">
+                                            <span class="mdc-notched-outline__leading"></span>
+                                            <span class="mdc-notched-outline__trailing"></span>
+                                        </span>
+                                    </div>
+                                    <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth" role="listbox">
+                                        <ul class="mdc-list">
+                                            <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" role="option" data-value="10">
+                                                <span class="mdc-list-item__text">10</span>
+                                            </li>
+                                            <li class="mdc-list-item" role="option" data-value="25">
+                                                <span class="mdc-list-item__text">25</span>
+                                            </li>
+                                            <li class="mdc-list-item" role="option" data-value="100">
+                                                <span class="mdc-list-item__text">100</span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mdc-data-table__pagination-navigation">
-                            <div class="mdc-data-table__pagination-total">
-                                1‑10 of 100
+                            <div class="mdc-data-table__pagination-navigation">
+                                <div class="mdc-data-table__pagination-total">
+                                    1‑10 of 100
+                                </div>
+                                <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-first-page="true" disabled>
+                                    <div class="mdc-button__icon">first_page</div>
+                                </button>
+                                <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-prev-page="true" disabled>
+                                    <div class="mdc-button__icon">chevron_left</div>
+                                </button>
+                                <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-next-page="true">
+                                    <div class="mdc-button__icon">chevron_right</div>
+                                </button>
+                                <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-last-page="true">
+                                    <div class="mdc-button__icon">last_page</div>
+                                </button>
                             </div>
-                            <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-first-page="true" disabled>
-                                <div class="mdc-button__icon">first_page</div>
-                            </button>
-                            <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-prev-page="true" disabled>
-                                <div class="mdc-button__icon">chevron_left</div>
-                            </button>
-                            <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-next-page="true">
-                                <div class="mdc-button__icon">chevron_right</div>
-                            </button>
-                            <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-last-page="true">
-                                <div class="mdc-button__icon">last_page</div>
-                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
-    </div>
-    <script>
-        const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
-        const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(document.querySelector('.mdc-top-app-bar'));
-        topAppBar.listen('MDCTopAppBar:nav', () => {
-            drawer.open = !drawer.open;
-        });
-        const dashboardHostsTable = mdc.dataTable.MDCDataTable.attachTo(document.getElementById('dashboard-host-table'));
-        let totalCal = 0;
-        console.log(dashboardHostsTable);
-        dashboardHostsTable.listen('MDCDataTable:rowSelectionChanged', (event) => {
-            const {rowIndex, selected} = event.detail;
-            const calories = sampleData.rows[rowIndex][CALORIES_COLUMN_INDEX];
-            if (selected) {
-                totalCal += calories;
-            } else {
-                totalCal -= calories;
-            }
-        });
-        // Instantiate the data table based on the `.mdc-data-table` class
-        // const dataTable =
-    </script>
-    <script>
-        class DatabeanUtil {
-            static current(o, field = undefined) {
-                return field ? o[0][field] : o[0];
-            }
-        }
-        class Autoget {
-            constructor(user, password) {
-                this.user = user;
-                this.password = password;
-                this.id = 0;
-                this.auth = null;
-                this.templateid = null;
-            }
-            get issue() {
-                return ++this.id;
-            }
-            async req(method, data) {
-                let auth = await this.login();
-                if(auth) {
-                    let o = await axios({
-                        url: 'http://itsm.internal.databean.co.kr/api_jsonrpc.php',
-                        method: 'post',
-                        data: {
-                            jsonrpc: "2.0",
-                            method: method,
-                            id: this.issue,
-                            params: data,
-                            auth: auth
-                        },
-                        headers: {
-                            'Content-Type': 'application/json-rpc'
-                        }
-                    });
-                    console.log(o);
-                    return o.data.result;
+                <div class="mdc-card" style="width: 340px;">
+                    <div class="mdc-card__media mdc-card__media--16-9"></div>
+                    <div class="mdc-card-wrapper__text-section">
+                        <div class="card__title">Card title</div>
+                        <div class="card__subhead">Secondary text</div>
+                    </div>
+                    <div class="mdc-card-wrapper__text-section">
+                        <div class="demo-card__supporting-text">
+                            Greyhound divisively hello coldly wonderfully marginally far upon excluding.
+                        </div>
+                    </div>
+                    <div class="mdc-card__actions">
+                        <button class="mdc-button mdc-card__action mdc-card__action--button mdc-ripple-upgraded">
+                            <span class="mdc-button__label">Action 1</span>
+                            <div class="mdc-button__ripple"></div>
+                        </button>
+                        <button class="mdc-button mdc-card__action mdc-card__action--button mdc-ripple-upgraded">
+                            <span class="mdc-button__label">Action 2</span>
+                            <div class="mdc-button__ripple"></div>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script>
+            const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
+            const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(document.querySelector('.mdc-top-app-bar'));
+            topAppBar.listen('MDCTopAppBar:nav', () => {
+                drawer.open = !drawer.open;
+            });
+            const dashboardHostsTable = mdc.dataTable.MDCDataTable.attachTo(document.getElementById('dashboard-host-table'));
+            let totalCal = 0;
+            console.log(dashboardHostsTable);
+            dashboardHostsTable.listen('MDCDataTable:rowSelectionChanged', (event) => {
+                const {rowIndex, selected} = event.detail;
+                const calories = sampleData.rows[rowIndex][CALORIES_COLUMN_INDEX];
+                if (selected) {
+                    totalCal += calories;
+                } else {
+                    totalCal -= calories;
                 }
-                return null;
+            });
+        </script>
+        <script>
+            function addRow(o, data) {
+                $(o).append(dashboard_host_table_row(data.name, data.info));
             }
-            async login() {
-                if(!this.auth) {
-                    let o = await axios({
-                        url: 'http://itsm.internal.databean.co.kr/api_jsonrpc.php',
-                        method: 'post',
-                        data: {
-                            jsonrpc: "2.0",
-                            method: "user.login",
-                            id: this.issue,
-                            params: {
-                                user: this.user,
-                                password: this.password,
+
+            class DatabeanUtil {
+                static current(o, field = undefined) {
+                    return o && o.length ? (field ? o[0][field] : o[0]) : null;
+                }
+            }
+            class Autoget {
+                constructor(user, password) {
+                    this.user = user;
+                    this.password = password;
+                    this.id = 0;
+                    this.auth = null;
+                    this.templateid = null;
+                    this.applicationid = null;
+                }
+                get issue() {
+                    return ++this.id;
+                }
+                async req(method, data) {
+                    let auth = await this.login();
+                    if(auth) {
+                        let o = await axios({
+                            url: 'http://itsm.internal.databean.co.kr/api_jsonrpc.php',
+                            method: 'post',
+                            data: {
+                                jsonrpc: "2.0",
+                                method: method,
+                                id: this.issue,
+                                params: data,
+                                auth: auth
+                            },
+                            headers: {
+                                'Content-Type': 'application/json-rpc'
                             }
-                        },
-                        headers: {
-                            'Content-Type': 'application/json-rpc'
-                        }
-                    });
-                    this.auth = o.data.result;
+                        });
+                        console.log(o);
+                        return o.data.result;
+                    }
+                    return null;
                 }
-                return this.auth;
+                async login() {
+                    if(!this.auth) {
+                        let o = await axios({
+                            url: 'http://itsm.internal.databean.co.kr/api_jsonrpc.php',
+                            method: 'post',
+                            data: {
+                                jsonrpc: "2.0",
+                                method: "user.login",
+                                id: this.issue,
+                                params: {
+                                    user: this.user,
+                                    password: this.password,
+                                }
+                            },
+                            headers: {
+                                'Content-Type': 'application/json-rpc'
+                            }
+                        });
+                        this.auth = o.data.result;
+                    }
+                    return this.auth;
+                }
+
+                async templatesGet(data) {
+                    return await this.req("template.get", data);
+                }
+
+                async hostsGet(data) {
+                    return await this.req("host.get", data);
+                }
+
+                async applicationsGet(data) {
+                    return await this.req("application.get", data);
+                }
+
+                async autogetDockerGet() {
+                }
+
+                async load() {
+                    this.templateid = DatabeanUtil.current(await this.templatesGet({ filter: { name: 'TEMPLATE AUTOGET DOCKER' }}), "templateid");
+                    this.applicationid = DatabeanUtil.current(await this.applicationsGet({ templateids: this.templateid, filter: { name: 'AUTOGET DOCKER APP' }}), "applicationid");
+                    this.hosts = await this.hostsGet({ templateids: this.templateid, selectItems: "extend" });
+
+
+                    this.hosts.forEach(o => {
+                        // console.log(o.items);
+                        let containers = null;
+                        let architecture = null;
+                        let info = null;
+                        o.items.forEach(item => {
+                            if(item.name === 'DOCKER: INFO') {
+                                info = JSON.parse(item.lastvalue);
+                                containers = {
+                                    total: info.Containers,
+                                    paused: info.ContainersPaused,
+                                    running: info.ContainersRunning,
+                                    stopped: info.ContainersStopped
+                                };
+                                architecture = info.Architecture;
+                                console.log(info);
+                            }
+                        });
+                        addRow(document.getElementById('dashboard-host-table-tbody'), {name: o.name, info: info});
+                    });
+                }
             }
 
-            async templatesGet(data) {
-                return await this.req("template.get", data);
-            }
+            var autoget = new Autoget('databean', 'password1!');
+            // autoget.templatesGet('TEMPLATE AUTOGET DOCKER')
+            //     .then(o=>console.log(o))
+            //     .catch(e=>console.log(e));
+            autoget.load();
 
-            async hostsGet(data) {
-                return await this.req("host.get", data);
-            }
-
-            async autogetDockerGet() {
-            }
-
-            async load() {
-                this.templateid = DatabeanUtil.current(await this.templatesGet({filter: { name: 'TEMPLATE AUTOGET DOCKER' }}), "templateid");
-                this.hosts = await this.hostsGet({ templateids: this.templateid });
-
-                // DISPLAY HOSTS
-                console.log(this.templateid);
-                console.log(this.hosts);
-            }
-        }
-
-        var autoget = new Autoget('databean', 'password1!');
-        // autoget.templatesGet('TEMPLATE AUTOGET DOCKER')
-        //     .then(o=>console.log(o))
-        //     .catch(e=>console.log(e));
-        autoget.load();
-
-    </script>
-</body>
+        </script>
+    </body>
 </html>
