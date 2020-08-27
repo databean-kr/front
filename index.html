@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
+        <link ret="shortcut icon" href="favicon.png" type="image/png" >
         <title>ITSM FOR DOCKER - DATABEAN</title>
         <script src="/js/fontawesome.js" crossorigin="anonymous"></script>
         <link href="/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -345,7 +346,7 @@
                                                         </div>
                                                     </div>
                                                     <!-- <div class="col" style="margin-left: 10px; margin-right: 10px;">
-                                                        <!-- TODO: WHAT ?????
+                                                        TODO: WHAT ?????
                                                         <div class="progress progress-sm mr-2">
                                                             <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                         </div>
@@ -379,14 +380,13 @@
                                                     &nbsp;
                                                     <a href="javascript:void(0)" class="badge badge-info"><span id="problems-summary-card-danger">&nbsp;</span> SERVER</a>
                                                 </div>
-                                                <span id="problems-summary-card-server-form" style="display: none;">
-                                                    <a href="javascript:void(0)" class="badge badge-info"></a>
+                                                <span style="display: none;">
+                                                    <a id="problems-summary-card-server-form" href="javascript:void(0)" class="badge badge-warning"></a>
                                                 </span>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-compact-disc fa-2x text-gray-300"></i>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -400,24 +400,26 @@
                                 <div class="card shadow mb-4">
                                     <!-- CARD HEADER - DROPDOWN -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">CPU USAGE (TOP 5)</h6>
                                         <div class="dropdown no-arrow">
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Dropdown Header:</div>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <div class="dropdown-header">SELECT RESOURCE</div>
+                                                <a class="dropdown-item" href="#">CPU</a>
+                                                <a class="dropdown-item" href="#">BLOCK I/O</a>
+                                                <a class="dropdown-item" href="#">MEMORY</a>
+                                                <a class="dropdown-item" href="#">NETWORK I/O</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <a class="dropdown-item" href="#">ALL</a>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- CARD BODY -->
                                     <div class="card-body">
                                         <div class="chart-area">
-                                            <canvas id="myAreaChart"></canvas>
+                                            <canvas id="resource-summary-chart"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -638,8 +640,193 @@
         <!-- PAGE LEVEL PLUGINS -->
         <script src="/vendor/chart.js/Chart.min.js"></script>
         <!-- PAGE LEVEL CUSTOM SCRIPTS -->
-        <script src="js/demo/chart-area-demo.js"></script>
+        <!-- <script src="js/demo/chart-area-demo.js"></script> -->
         <script src="js/demo/chart-pie-demo.js"></script>
+        <script>
+            class ResourceUsageChart {
+                constructor(id) {
+                    this.id = id;
+                    this.data = {
+                        labels: ['', '', '', '', ''],
+                        datasets: [
+                            {
+                                label: 'cpu',
+                                backgroundColor: Chart.helpers.color('rgb(255, 99, 132)').alpha(0.5).rgbString(),
+                                borderColor: 'rgb(255, 99, 132)',
+                                borderWidth: 1,
+                                data: [ 0, 0, 0, 0, 0 ]
+                            }
+                        ]
+                    };
+                    window.onload = () => {
+            			var ctx = document.getElementById(this.id).getContext('2d');
+            			this.chart = new Chart(ctx, {
+            				type: 'bar',
+            				data: this.data,
+            				options: {
+                                maintainAspectRatio: false,
+                                layout: {
+                                  padding: {
+                                    left: 10,
+                                    right: 25,
+                                    top: 25,
+                                    bottom: 0
+                                  }
+                                },
+            					responsive: true,
+            					legend: {
+                                    display: false,
+            						position: 'top',
+            					},
+            					title: {
+            						display: false,
+            						text: 'Chart.js Bar Chart'
+            					},
+                                scales: {
+                                  xAxes: [{
+                                    time: {
+                                      unit: 'date'
+                                    },
+                                    gridLines: {
+                                      display: false,
+                                      drawBorder: false
+                                    },
+                                    ticks: {
+                                      maxTicksLimit: 7
+                                    }
+                                  }],
+                                  yAxes: [{
+                                    ticks: {
+                                      min: 0,
+						              max: 100,
+                                      stepSize: 20,
+                                      //maxTicksLimit: 5,
+                                      padding: 10
+                                    },
+                                    gridLines: {
+                                      color: "rgb(234, 236, 244)",
+                                      zeroLineColor: "rgb(234, 236, 244)",
+                                      drawBorder: false,
+                                      borderDash: [2],
+                                      zeroLineBorderDash: [2]
+                                    }
+                                  }],
+                                },
+            				}
+            			});
+            		};
+                }
+                set(o) {
+                    this.data.datasets.data = o;
+                    if(this.chart) {
+                        this.chart.update();
+                    }
+                }
+            }
+            const chart = {
+                resource: {
+                    usage: new ResourceUsageChart('resource-summary-chart')
+                }
+            };
+            console.log(chart.resource.usage.data);
+    		// var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    		// var color = Chart.helpers.color;
+    		// var barChartData = {
+    		// 	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    		// 	datasets: [{
+    		// 		label: 'Dataset 1',
+    		// 		backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+    		// 		borderColor: window.chartColors.red,
+    		// 		borderWidth: 1,
+    		// 		data: [
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor()
+    		// 		]
+    		// 	}, {
+    		// 		label: 'Dataset 2',
+    		// 		backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+    		// 		borderColor: window.chartColors.blue,
+    		// 		borderWidth: 1,
+    		// 		data: [
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor(),
+    		// 			randomScalingFactor()
+    		// 		]
+    		// 	}]
+            //
+    		// };
+            //
+            //
+            //
+    		// document.getElementById('randomizeData').addEventListener('click', function() {
+    		// 	var zero = Math.random() < 0.2 ? true : false;
+    		// 	barChartData.datasets.forEach(function(dataset) {
+    		// 		dataset.data = dataset.data.map(function() {
+    		// 			return zero ? 0.0 : randomScalingFactor();
+    		// 		});
+            //
+    		// 	});
+    		// 	window.myBar.update();
+    		// });
+            //
+    		// var colorNames = Object.keys(window.chartColors);
+    		// document.getElementById('addDataset').addEventListener('click', function() {
+    		// 	var colorName = colorNames[barChartData.datasets.length % colorNames.length];
+    		// 	var dsColor = window.chartColors[colorName];
+    		// 	var newDataset = {
+    		// 		label: 'Dataset ' + (barChartData.datasets.length + 1),
+    		// 		backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+    		// 		borderColor: dsColor,
+    		// 		borderWidth: 1,
+    		// 		data: []
+    		// 	};
+            //
+    		// 	for (var index = 0; index < barChartData.labels.length; ++index) {
+    		// 		newDataset.data.push(randomScalingFactor());
+    		// 	}
+            //
+    		// 	barChartData.datasets.push(newDataset);
+    		// 	window.myBar.update();
+    		// });
+            //
+    		// document.getElementById('addData').addEventListener('click', function() {
+    		// 	if (barChartData.datasets.length > 0) {
+    		// 		var month = MONTHS[barChartData.labels.length % MONTHS.length];
+    		// 		barChartData.labels.push(month);
+            //
+    		// 		for (var index = 0; index < barChartData.datasets.length; ++index) {
+    		// 			// window.myBar.addData(randomScalingFactor(), index);
+    		// 			barChartData.datasets[index].data.push(randomScalingFactor());
+    		// 		}
+            //
+    		// 		window.myBar.update();
+    		// 	}
+    		// });
+            //
+    		// document.getElementById('removeDataset').addEventListener('click', function() {
+    		// 	barChartData.datasets.pop();
+    		// 	window.myBar.update();
+    		// });
+            //
+    		// document.getElementById('removeData').addEventListener('click', function() {
+    		// 	barChartData.labels.splice(-1, 1); // remove the label first
+            //
+    		// 	barChartData.datasets.forEach(function(dataset) {
+    		// 		dataset.data.pop();
+    		// 	});
+            //
+    		// 	window.myBar.update();
+    		// });
+    	</script>
         <script>
             const dashboard = {
                 card: {
@@ -717,7 +904,7 @@
                                 'Content-Type': 'application/json-rpc'
                             }
                         });
-                        console.log(o);
+                        // console.log(o);
                         return o.data.result;
                     }
                     return null;
@@ -791,25 +978,44 @@
                             total: 0
                         }
                     };
-                    console.log(this.hosts);
                     this.hosts.forEach(o => {
-                        let info = null;
+                        o.docker = {};
                         o.items.forEach(item => {
                             if(item.name === 'DOCKER: INFO') {
                                 try {
-                                    info = item.lastvalue ? JSON.parse(item.lastvalue) : null;
-                                    console.log(info);
+                                    const info = item.lastvalue ? JSON.parse(item.lastvalue) : null;
+                                    // console.log(info);
                                     if(info) {
-                                        o.docker = { info };
-                                        this.summary.containers.total += (info && info.Containers ? info.Containers : 0);
-                                        this.summary.containers.running += (info && info.ContainersRunning ? info.ContainersRunning : 0);
-                                        this.summary.containers.stopped += (info && info.ContainersStopped ? info.ContainersStopped : 0);
-                                        this.summary.containers.paused += (info && info.ContainersPaused ? info.ContainersPaused : 0);
-                                        this.summary.images.total += (info && info.Images ? info.Images : 0);
+                                        o.docker.info = info;
+                                        this.summary.containers.total += (info.Containers ? info.Containers : 0);
+                                        this.summary.containers.running += (info.ContainersRunning ? info.ContainersRunning : 0);
+                                        this.summary.containers.stopped += (info.ContainersStopped ? info.ContainersStopped : 0);
+                                        this.summary.containers.paused += (info.ContainersPaused ? info.ContainersPaused : 0);
+                                        this.summary.images.total += (info.Images ? info.Images : 0);
                                     }
                                 } catch(e) {
+                                    o.docker.info = null;
                                     console.log(e);
-                                    info = null;
+                                }
+                            } else if(item.name === 'DOCKER: STAT') {
+                                try {
+                                    o.docker.stat = {
+                                        cpu: 0,
+                                        disk: 0,
+                                        mem: 0
+                                    }
+                                    const stats = item.lastvalue ? JSON.parse(`[${item.lastvalue.replace(/\n/g, ',')}]`) : null;
+                                    console.log(stats);
+                                    o.docker.stats = stats;
+                                    o.docker.stats.forEach(stat=>{
+                                        o.docker.stat.cpu += parseFloat(stat.CPUPerc.replace('%', ''));
+                                        o.docker.stat.mem += parseFloat(stat.MemPerc.replace('%', ''));
+                                    });
+
+                                    console.log(o.docker.stats);
+                                } catch(e) {
+                                    console.log(item.lastvalue);
+                                    console.log(e);
                                 }
                             }
                         });
@@ -868,7 +1074,6 @@
                     // DISPLAY ALERT COUNT
                     $(dashboard.alert.message.count).empty().append(dashboard.alert.message.limit < this.problems.length ? `${dashboard.alert.message.limit}+` : this.problems.length);
                     // DISPLAY PROBLEMS TOTAL
-                    console.log($(dashboard.card.problem.total));
                     $(dashboard.card.problem.total).empty().append(this.problems.length);
                     $(dashboard.card.problem.critical).empty().append(this.summary.problems.critical);
                     $(dashboard.card.problem.warning).empty().append(this.summary.problems.warning);
@@ -885,22 +1090,31 @@
                         return 0;
                     });
                     $(dashboard.card.image.top).empty();
-                    console.log($(dashboard.card.image.top));
-                    for(let i = 0; i < res.length; i++) {
-                        console.log(res[i].docker.info.Images);
+                    for(let i = 0; i < res.length && i < dashboard.card.image.limit && res[i].docker.info.Images > 0; i++) {
                         const view = $(dashboard.card.image.form).clone();
-                        console.log($(dashboard.card.image.form));
-                        view.find("a").append(res[i].name);
-                        console.log(res[i].name);
-                        console.log(view.find("a"));
+                        view.append(`${res[i].name} (${res[i].docker.info.Images})`);
                         $(dashboard.card.image.top).append(view);
-                        // image: {
-                        //     total: document.getElementById('images-summary-card-total'),
-                        //     top: document.getElementById('images-summary-card-top'),
-                        //     form: document.getElementById('problems-summary-card-server-form'),
-                        //     limit: 3
-                        // }
                     }
+                    // DISPLAY RESOURCE CHART DATA
+                    let resources = this.hosts.sort((x, y) => {
+                        let _x = Math.max(parseFloat(x.docker.stat.cpu), parseFloat(x.docker.stat.mem));
+                        let _y = Math.max(parseFloat(y.docker.stat.cpu), parseFloat(y.docker.stat.mem));
+                        if(_x < _y) {
+                            return 1;
+                        }
+                        if(_x > _y) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    // TODO: UPDATE RESOURCES
+                    resources.map(o=>{
+                        return {
+
+                        };
+                    });
+                    resources.forEach(o => console.log(o.docker.stat));
+
                 }
             }
 
