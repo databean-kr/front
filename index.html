@@ -36,19 +36,19 @@
                 <hr class="sidebar-divider my-0">
                 <!-- HEADING -->
                 <div class="sidebar-heading">
-                    TODO
+                    DOCKER
                 </div>
                 <!-- NAV ITEM - PAGES COLLAPSE MENU -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDocker" aria-expanded="true" aria-controls="collapseDocker">
                         <i class="fas fa-fw fa-cog"></i>
-                        <span>TODO</span>
+                        <span>INFRASTRUCTURE</span>
                     </a>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">TODO: CHANGE COLOR</h6>
-                            <a class="collapse-item" href="buttons.html">TODO</a>
-                            <a class="collapse-item" href="cards.html">TODO</a>
+                    <div id="collapseDocker" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                        <div class="bg-primary collapse-inner rounded">
+                            <h6 class="collapse-header text-white">DOCKER HOSTS</h6>
+                            <a class="nav-link" style="margin-left: 10px;" href="buttons.html">HOSTS</a>
+                            <a class="nav-link" style="margin-left: 10px;" href="cards.html">CONTAINERS</a>
                         </div>
                     </div>
                 </li>
@@ -56,7 +56,7 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
-                        <span>TODO</span>
+                        <span>DOCKER</span>
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
@@ -70,7 +70,7 @@
                 <hr class="sidebar-divider my-0">
                 <!-- HEADING -->
                 <div class="sidebar-heading">
-                    TODO
+                    INFRASTRUCTURE
                 </div>
                 <!-- NAV ITEM - PAGES COLLAPSE MENU -->
                 <li class="nav-item">
@@ -106,7 +106,12 @@
                     </a>
                 </li>
                 <!-- DIVIDER -->
-                <hr class="sidebar-divider d-none d-md-block">
+                <hr class="sidebar-divider my-0">
+                <!-- HEADING -->
+                <div class="sidebar-heading">
+                    NETWORK
+                </div>
+
                 <!-- SIDEBAR TOGGLER (SIDEBAR) -->
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -293,7 +298,7 @@
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                     <span id="hosts-summary-card-total">&nbsp;</span>
                                                 </div>
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="margin-top: 10px;">
+                                                <div class="font-weight-bold text-success text-uppercase mb-1" style="margin-top: 10px;">
                                                     <a href="javascript:void(0)" class="badge badge-success"><span id="hosts-summary-card-normal">0</span> NORMAL</a>
                                                     <a href="javascript:void(0)" class="badge badge-danger"><span id="hosts-summary-card-critical">0</span> CRITICAL</a>
                                                     <a href="javascript:void(0)" class="badge badge-warning"><span id="hosts-summary-card-warning">0</span> WARNING</a>
@@ -317,7 +322,7 @@
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                     <span id="containers-summary-card-total">&nbsp;</span>
                                                 </div>
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="margin-top: 10px;">
+                                                <div class="font-weight-bold text-success text-uppercase mb-1" style="margin-top: 10px;">
                                                     <a href="javascript:void(0)" class="badge badge-success"><span id="containers-summary-card-running">&nbsp;</span> RUNNING</a>
                                                     <a href="javascript:void(0)" class="badge badge-danger"><span id="containers-summary-card-stopped">&nbsp;</span> STOPPED</a>
                                                     <a href="javascript:void(0)" class="badge badge-warning"><span id="containers-summary-card-paused">&nbsp;</span> PAUSED</a>
@@ -352,7 +357,7 @@
                                                         </div>
                                                     </div> -->
                                                 </div>
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="margin-top: 10px;">
+                                                <div class="font-weight-bold text-success text-uppercase mb-1" style="margin-top: 10px;">
                                                     <a href="javascript:void(0)" class="badge badge-danger"><span id="problems-summary-card-critical">&nbsp;</span> CRITICAL</a>
                                                     <a href="javascript:void(0)" class="badge badge-warning"><span id="problems-summary-card-warning">&nbsp;</span> WARNING</a>
                                                     <a href="javascript:void(0)" class="badge badge-info"><span id="problems-summary-card-info">&nbsp;</span> INFO</a>
@@ -376,9 +381,9 @@
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                     <span id="images-summary-card-total">&nbsp;</span>
                                                 </div>
-                                                <div id="images-summary-card-top" class="text-xs font-weight-bold text-success text-uppercase mb-1" style="margin-top: 10px;">
+                                                <!-- TODO: 컨셉을 잡을 것 -->
+                                                <div id="images-summary-card-top" class="font-weight-bold text-success text-uppercase mb-1" style="margin-top: 10px;">
                                                     &nbsp;
-                                                    <a href="javascript:void(0)" class="badge badge-info"><span id="problems-summary-card-danger">&nbsp;</span> SERVER</a>
                                                 </div>
                                                 <span style="display: none;">
                                                     <a id="problems-summary-card-server-form" href="javascript:void(0)" class="badge badge-warning"></a>
@@ -400,19 +405,18 @@
                                 <div class="card shadow mb-4">
                                     <!-- CARD HEADER - DROPDOWN -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">CPU USAGE (TOP 5)</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">RESOURCE (CPU, MEMORY, DISK)</h6>
                                         <div class="dropdown no-arrow">
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                                 <div class="dropdown-header">SELECT RESOURCE</div>
-                                                <a class="dropdown-item" href="#">CPU</a>
-                                                <a class="dropdown-item" href="#">BLOCK I/O</a>
-                                                <a class="dropdown-item" href="#">MEMORY</a>
-                                                <a class="dropdown-item" href="#">NETWORK I/O</a>
+                                                <a class="dropdown-item" href="javascript:void(0);" onclick="chart.resource.usage.draw('cpu');">CPU</a>
+                                                <a class="dropdown-item" href="javascript:void(0);" onclick="chart.resource.usage.draw('memory');">MEMORY</a>
+                                                <a class="dropdown-item" href="javascript:void(0);" onclick="chart.resource.usage.draw('disk');">DISK</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">ALL</a>
+                                                <a class="dropdown-item" href="javascript:void(0);" onclick="chart.resource.usage.draw('all');">ALL</a>
                                             </div>
                                         </div>
                                     </div>
@@ -420,6 +424,17 @@
                                     <div class="card-body">
                                         <div class="chart-area">
                                             <canvas id="resource-summary-chart"></canvas>
+                                        </div>
+                                        <div class="mt-4 text-center small">
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-danger"></i> CPU
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-warning"></i> MEMORY
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-primary"></i> DISK
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -429,7 +444,7 @@
                                 <div class="card shadow mb-4">
                                     <!-- CARD HEADER - DROPDOWN -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">CONTAINERS STATUS</h6>
                                         <div class="dropdown no-arrow">
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -446,17 +461,17 @@
                                     <!-- CARD BODY -->
                                     <div class="card-body">
                                         <div class="chart-pie pt-4 pb-2">
-                                            <canvas id="myPieChart"></canvas>
+                                            <canvas id="container-summary-chart"></canvas>
                                         </div>
                                         <div class="mt-4 text-center small">
                                             <span class="mr-2">
-                                                <i class="fas fa-circle text-primary"></i> Direct
+                                                <i class="fas fa-circle text-primary"></i> RUNNING
                                             </span>
                                             <span class="mr-2">
-                                                <i class="fas fa-circle text-success"></i> Social
+                                                <i class="fas fa-circle text-success"></i> STOPPED
                                             </span>
                                             <span class="mr-2">
-                                                <i class="fas fa-circle text-info"></i> Referral
+                                                <i class="fas fa-circle text-info"></i> PAUSED
                                             </span>
                                         </div>
                                     </div>
@@ -465,9 +480,7 @@
                         </div>
                         <!-- CONTENT ROW -->
                         <div class="row">
-                            <!-- CONTENT COLUMN -->
-                            <div class="col-lg-6 mb-4">
-                                <!-- PROJECT CARD EXAMPLE -->
+                            <!-- <div class="col-lg-6 mb-4">
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
@@ -495,7 +508,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- COLOR SUSTEM -->
                                 <div class="row">
                                     <div class="col-lg-6 mb-4">
                                         <div class="card bg-primary text-white shadow">
@@ -562,29 +574,99 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-lg-6 mb-4">
                                 <!-- ILLUSTRATIONS -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">DATAMON FOR SMS</h6>
                                     </div>
                                     <div class="card-body">
                                         <div class="text-center">
                                             <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
                                         </div>
-                                        <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-                                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+                                        Dynamic Docker Monitoring
+                                        Enhance visibility into the performance of your entire containerized environment and investigate issues quickly.
+
+
+                                        Monitor Your Docker Containers More Effectively
+                                        Automatically detect and monitor your containers as quickly as they are created and destroyed
+                                        Easily analyze the health of all your containers distributed across any cloud environment in a single pane of glass with the cluster agent
+                                        Avoid resource contention and deficiency by drilling into individual containers running hot with 1 click
+                                        Collect, monitor, and visualize high-granularity metrics from all your containers at 15s. granularity for 15 months – including CPU, I/O, and memory
+
+
+                                        Gain Deeper Insights into Your Container Orchestration
+                                        Enhance visibility into container orchestration with the live container view
+                                        Optimize horizontal auto-scaling by connecting Datadog to your HPA and collecting request rate, latency, and available network bandwidth
+                                        Easily detect clusters over or under-allocating available resources via the auto-generated container map
+                                        Improve operational costs and reduce excess capacity based on high-granularity historical data
+
+                                        Troubleshoot Performance Issues Quickly and Minimize Downtime
+                                        Gain complete visibility into your application code performance with distributed tracing, stack traces, full latency breakdowns, and flame graphs including request-level details
+                                        Easily verify that containers and services maintain high availability through dashboard reporting, synthetic tests, and App Analytics
+                                        Test hypotheses in seconds by overlaying Docker and container orchestration events onto time-synchronized graphs
+
+                                        Eliminate False-Positives and Receive Alerts for Only the Issues that Matter
+                                        Set up threshold and rate of change alerts for service-level metrics that won’t panic as containers scale down
+                                        Create smarter alerts that account for daily, weekly, and seasonal fluctuations
+                                        Proactively prevent outages and errors with forecasts on resource metrics such as CPU and memory
+                                        Automatically detect unanticipated anomalous events, outliers, and errors with Watchdog
+
+                                        Enhance Visibility with Datadog
+                                        Monitor your Docker containers, cloud services, load balancers, databases, and servlets all in one place with Datadog’s 400+ vendor-backed integrations
+                                        Create custom, drag-and-drop dashboards within seconds and visualize highly-granularity metrics in real time
+                                        Seamlessly navigate between your logs, infrastructure metrics, and application traces
+                                        Retain performance data at container id level for 36 hours automatically
+                                        Quickly deploy the agent across your entire cluster through our helm chart or daemonset
+                                        <!-- <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
+                                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a> -->
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
                                 <!-- APPROACH -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">DATAMON FOR DOCKER</h6>
                                     </div>
                                     <div class="card-body">
-                                        <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p>
-                                        <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
+                                        Dynamic Infrastructure Monitoring
+                                        Accelerate development and reduce mean time to resolution with end-to-end visibility in a single platform.
+
+                                        Automatically Surface Issues within Your Infrastructure
+                                        Detect anomalies in your IT infrastructure within seconds using Watchdog
+                                        View all your cloud and on-prem servers from a bird’s eye view; drill into individual hosts with 1 click
+                                        Monitor your containers as quickly as they are created and destroyed
+                                        Visualize highly-granular data and custom metrics in real time
+
+                                        See Inside Any Stack, Any App, At Any Scale, Anywhere
+                                        Monitor your cloud services, on-premise servers, containers, databases, and more in one place with Datadog’s 400+ vendor-backed integrations
+                                        Create custom, drag-and-drop dashboards within seconds
+                                        Seamlessly navigate between your logs, infrastructure metrics, and application traces all within one platform
+
+                                        Prevent Infrastructure Costs from Ballooning
+                                        Easily discover underutilized cloud servers and on-premise servers via the real-time, auto-generated host map
+                                        Reduce excess capacity based on high-granularity historical data to save on operational costs
+                                        Identify the sources of expensive cross-AZ traffic with the live network map
+
+                                        Improve App Reliability & Collaboration Across Teams
+                                        Diagnose root causes faster and see anomalous behavior across all your systems with one click using correlations
+                                        View infrastructure metrics, application traces, and logs within a single pane of glass
+                                        Communicate performance issues quickly with workflow integrations such as Slack and Pagerduty
+                                        Easily test hypotheses by overlaying events onto time-synchronized graphs
+
+                                        Receive Alerts Only for the Issues That Matter & Eliminate False-Positives
+                                        Set up alerts for anomalies and outliers that account for daily, weekly, and seasonal fluctuations
+                                        Proactively prevent outages and errors by alerting on metric forecasts
+                                        Create composite alerts, based on Boolean logic, to reduce your time spent responding to spurious alerts
+                                        Automatically detect unanticipated outliers, anomalies, and errors with Watchdog
+
+                                        Datadog Differentiators
+                                        Ingest all your logs with Datadog and only pay for the logs you index
+                                        Collect more traces and high granularity metrics for 15 months or longer - without any roll-ups
+                                        Slice-and-dice data across logs, metrics, and traces efficiently with automated tagging integrated throughout the entire platform
+                                        Start monitoring faster with Datadog’s simple, streamlined setup process
                                     </div>
                                 </div>
                             </div>
@@ -596,8 +678,8 @@
                 <!-- FOOTER -->
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2020</span>
+                        <div class="copyright text-center my-auto text-dark">
+                            <span class="text-uppercase">Copyright &copy; <a class="text-dark" href="http://www.databean.co.kr/">databean.co.kr</a> 2020</span>
                         </div>
                     </div>
                 </footer>
@@ -641,27 +723,44 @@
         <script src="/vendor/chart.js/Chart.min.js"></script>
         <!-- PAGE LEVEL CUSTOM SCRIPTS -->
         <!-- <script src="js/demo/chart-area-demo.js"></script> -->
-        <script src="js/demo/chart-pie-demo.js"></script>
+        <!-- <script src="js/demo/chart-pie-demo.js"></script> -->
         <script>
+            // Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+            // Chart.defaults.global.defaultFontColor = '#858796';
             class ResourceUsageChart {
                 constructor(id) {
                     this.id = id;
+                    this.datasets = [
+                        {
+                            label: 'CPU',
+                            backgroundColor: Chart.helpers.color('rgb(231, 74, 59)').rgbString(),
+                            borderColor: 'rgb(231, 74, 59)',
+                            borderWidth: 1,
+                            data: [ 0, 0, 0, 0, 0 ]
+                        },
+                        {
+                            label: 'MEMORY',
+                            backgroundColor: Chart.helpers.color('rgb(246, 194, 62)').rgbString(),
+                            borderColor: 'rgb(246, 194, 62)',
+                            borderWidth: 1,
+                            data: [ 0, 0, 0, 0, 0 ]
+                        },
+                        {
+                            label: 'DISK',
+                            backgroundColor: Chart.helpers.color('rgb(78, 115, 223)').rgbString(),
+                            borderColor: 'rgb(78, 115, 223)',
+                            borderWidth: 1,
+                            data: [ 0, 0, 0, 0, 0 ]
+                        }
+                    ];
                     this.data = {
                         labels: ['', '', '', '', ''],
-                        datasets: [
-                            {
-                                label: 'cpu',
-                                backgroundColor: Chart.helpers.color('rgb(255, 99, 132)').alpha(0.5).rgbString(),
-                                borderColor: 'rgb(255, 99, 132)',
-                                borderWidth: 1,
-                                data: [ 0, 0, 0, 0, 0 ]
-                            }
-                        ]
+                        datasets: this.datasets
                     };
                     window.onload = () => {
             			var ctx = document.getElementById(this.id).getContext('2d');
             			this.chart = new Chart(ctx, {
-            				type: 'bar',
+            				type: 'horizontalBar',
             				data: this.data,
             				options: {
                                 maintainAspectRatio: false,
@@ -675,12 +774,10 @@
                                 },
             					responsive: true,
             					legend: {
-                                    display: false,
-            						position: 'top',
+                                    display: false
             					},
             					title: {
             						display: false,
-            						text: 'Chart.js Bar Chart'
             					},
                                 scales: {
                                   xAxes: [{
@@ -692,21 +789,21 @@
                                       drawBorder: false
                                     },
                                     ticks: {
-                                      maxTicksLimit: 7
+                                      min: 0,
+  						              max: 100,
+                                      padding: 0,
+                                      stepSize: 20,
+                                      maxTicksLimit: 6
                                     }
                                   }],
                                   yAxes: [{
                                     ticks: {
-                                      min: 0,
-						              max: 100,
-                                      stepSize: 20,
-                                      //maxTicksLimit: 5,
-                                      padding: 10
+                                      fontStyle: "bold"
                                     },
                                     gridLines: {
                                       color: "rgb(234, 236, 244)",
                                       zeroLineColor: "rgb(234, 236, 244)",
-                                      drawBorder: false,
+                                      drawBorder: true,
                                       borderDash: [2],
                                       zeroLineBorderDash: [2]
                                     }
@@ -716,116 +813,80 @@
             			});
             		};
                 }
-                set(o) {
-                    this.data.datasets.data = o;
+                set(index, o) {
+                    if(index === 'label') {
+                        this.data.labels = o;
+                    } else {
+                        this.datasets[index].data = o;
+                    }
                     if(this.chart) {
                         this.chart.update();
                     }
+                }
+                draw(type) {
+                    if(type === 'cpu') {
+                        this.data.datasets = [ this.datasets[0] ];
+                    } else if(type === 'memory') {
+                        this.data.datasets = [ this.datasets[1] ];
+                    } else if(type === 'disk') {
+                        this.data.datasets = [ this.datasets[2] ];
+                    } else {
+                        this.data.datasets = this.datasets;
+                    }
+                    this.chart.update();
+                }
+                run() {
+
+                }
+            }
+            class ContainerPieChart {
+                set(o) {
+                    this.data.datasets[0].data = o;
+                    console.log(o);
+                    this.chart.update();
+                }
+                constructor() {
+                    this.data = {
+                      labels: ["RUNNING", "STOPPED", "PAUSED"],
+                      datasets: [{
+                        data: [0, 0, 0],
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                        hoverBorderColor: "rgba(234, 236, 244, 1)",
+                      }],
+                    };
+                    this.chart = new Chart(document.getElementById("container-summary-chart"), {
+                        type: 'doughnut',
+                        data: this.data,
+                        options: {
+                          maintainAspectRatio: false,
+                          tooltips: {
+                            backgroundColor: "rgb(255,255,255)",
+                            bodyFontColor: "#858796",
+                            borderColor: '#dddfeb',
+                            borderWidth: 1,
+                            xPadding: 15,
+                            yPadding: 15,
+                            displayColors: false,
+                            caretPadding: 10,
+                          },
+                          legend: {
+                            display: false
+                          },
+                          cutoutPercentage: 80,
+                        }
+                    });
                 }
             }
             const chart = {
                 resource: {
                     usage: new ResourceUsageChart('resource-summary-chart')
+                },
+                container: {
+                    summary: new ContainerPieChart('container-summary-chart')
                 }
             };
-            console.log(chart.resource.usage.data);
-    		// var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    		// var color = Chart.helpers.color;
-    		// var barChartData = {
-    		// 	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    		// 	datasets: [{
-    		// 		label: 'Dataset 1',
-    		// 		backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    		// 		borderColor: window.chartColors.red,
-    		// 		borderWidth: 1,
-    		// 		data: [
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor()
-    		// 		]
-    		// 	}, {
-    		// 		label: 'Dataset 2',
-    		// 		backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-    		// 		borderColor: window.chartColors.blue,
-    		// 		borderWidth: 1,
-    		// 		data: [
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor(),
-    		// 			randomScalingFactor()
-    		// 		]
-    		// 	}]
-            //
-    		// };
-            //
-            //
-            //
-    		// document.getElementById('randomizeData').addEventListener('click', function() {
-    		// 	var zero = Math.random() < 0.2 ? true : false;
-    		// 	barChartData.datasets.forEach(function(dataset) {
-    		// 		dataset.data = dataset.data.map(function() {
-    		// 			return zero ? 0.0 : randomScalingFactor();
-    		// 		});
-            //
-    		// 	});
-    		// 	window.myBar.update();
-    		// });
-            //
-    		// var colorNames = Object.keys(window.chartColors);
-    		// document.getElementById('addDataset').addEventListener('click', function() {
-    		// 	var colorName = colorNames[barChartData.datasets.length % colorNames.length];
-    		// 	var dsColor = window.chartColors[colorName];
-    		// 	var newDataset = {
-    		// 		label: 'Dataset ' + (barChartData.datasets.length + 1),
-    		// 		backgroundColor: color(dsColor).alpha(0.5).rgbString(),
-    		// 		borderColor: dsColor,
-    		// 		borderWidth: 1,
-    		// 		data: []
-    		// 	};
-            //
-    		// 	for (var index = 0; index < barChartData.labels.length; ++index) {
-    		// 		newDataset.data.push(randomScalingFactor());
-    		// 	}
-            //
-    		// 	barChartData.datasets.push(newDataset);
-    		// 	window.myBar.update();
-    		// });
-            //
-    		// document.getElementById('addData').addEventListener('click', function() {
-    		// 	if (barChartData.datasets.length > 0) {
-    		// 		var month = MONTHS[barChartData.labels.length % MONTHS.length];
-    		// 		barChartData.labels.push(month);
-            //
-    		// 		for (var index = 0; index < barChartData.datasets.length; ++index) {
-    		// 			// window.myBar.addData(randomScalingFactor(), index);
-    		// 			barChartData.datasets[index].data.push(randomScalingFactor());
-    		// 		}
-            //
-    		// 		window.myBar.update();
-    		// 	}
-    		// });
-            //
-    		// document.getElementById('removeDataset').addEventListener('click', function() {
-    		// 	barChartData.datasets.pop();
-    		// 	window.myBar.update();
-    		// });
-            //
-    		// document.getElementById('removeData').addEventListener('click', function() {
-    		// 	barChartData.labels.splice(-1, 1); // remove the label first
-            //
-    		// 	barChartData.datasets.forEach(function(dataset) {
-    		// 		dataset.data.pop();
-    		// 	});
-            //
-    		// 	window.myBar.update();
-    		// });
+
     	</script>
         <script>
             const dashboard = {
@@ -979,12 +1040,19 @@
                         }
                     };
                     this.hosts.forEach(o => {
-                        o.docker = {};
+                        o.docker = {
+                            info: null,
+                            stats: null,
+                            stat: {
+                                cpu: 0,
+                                disk: 0,
+                                mem: 0
+                            }
+                        };
                         o.items.forEach(item => {
                             if(item.name === 'DOCKER: INFO') {
                                 try {
                                     const info = item.lastvalue ? JSON.parse(item.lastvalue) : null;
-                                    // console.log(info);
                                     if(info) {
                                         o.docker.info = info;
                                         this.summary.containers.total += (info.Containers ? info.Containers : 0);
@@ -994,27 +1062,17 @@
                                         this.summary.images.total += (info.Images ? info.Images : 0);
                                     }
                                 } catch(e) {
-                                    o.docker.info = null;
                                     console.log(e);
                                 }
                             } else if(item.name === 'DOCKER: STAT') {
                                 try {
-                                    o.docker.stat = {
-                                        cpu: 0,
-                                        disk: 0,
-                                        mem: 0
-                                    }
                                     const stats = item.lastvalue ? JSON.parse(`[${item.lastvalue.replace(/\n/g, ',')}]`) : null;
-                                    console.log(stats);
                                     o.docker.stats = stats;
                                     o.docker.stats.forEach(stat=>{
                                         o.docker.stat.cpu += parseFloat(stat.CPUPerc.replace('%', ''));
                                         o.docker.stat.mem += parseFloat(stat.MemPerc.replace('%', ''));
                                     });
-
-                                    console.log(o.docker.stats);
                                 } catch(e) {
-                                    console.log(item.lastvalue);
                                     console.log(e);
                                 }
                             }
@@ -1025,6 +1083,8 @@
                     $(dashboard.card.container.running).empty().append(this.summary.containers.running);
                     $(dashboard.card.container.stopped).empty().append(this.summary.containers.stopped);
                     $(dashboard.card.container.paused).empty().append(this.summary.containers.paused);
+
+                    chart.container.summary.set([this.summary.containers.running, this.summary.containers.stopped, this.summary.containers.paused]);
                     this.problems = [];
                     for(let i = 0; i < this.hosts.length; i++) {
                         this.hosts[i].problems = await this.problemsGet({ hostids: this.hosts[i].hostid });
@@ -1080,21 +1140,14 @@
                     $(dashboard.card.problem.info).empty().append(this.summary.problems.info);
                     // DISPLAY IMAGES TOTAL
                     $(dashboard.card.image.total).empty().append(this.summary.images.total);
-                    let res = this.hosts.sort((x, y) => {
-                        if(x.docker.info.Images < y.docker.info.Images) {
-                            return 1;
-                        }
-                        if(x.docker.info.Images > y.docker.info.Images) {
-                            return -1;
-                        }
-                        return 0;
-                    });
-                    $(dashboard.card.image.top).empty();
-                    for(let i = 0; i < res.length && i < dashboard.card.image.limit && res[i].docker.info.Images > 0; i++) {
-                        const view = $(dashboard.card.image.form).clone();
-                        view.append(`${res[i].name} (${res[i].docker.info.Images})`);
-                        $(dashboard.card.image.top).append(view);
-                    }
+                    // IMAGE CARD VIEW 에 데이터를 삽입하는 코드: UI 깨짐 현상 발생
+                    // $(dashboard.card.image.top).empty();
+                    // for(let i = 0; i < res.length && i < dashboard.card.image.limit && res[i].docker.info.Images > 0; i++) {
+                    //     const view = $(dashboard.card.image.form).clone();
+                    //     view.append(`${res[i].name} (${res[i].docker.info.Images})`);
+                    //     $(dashboard.card.image.top).append(view);
+                    // }
+
                     // DISPLAY RESOURCE CHART DATA
                     let resources = this.hosts.sort((x, y) => {
                         let _x = Math.max(parseFloat(x.docker.stat.cpu), parseFloat(x.docker.stat.mem));
@@ -1107,14 +1160,17 @@
                         }
                         return 0;
                     });
-                    // TODO: UPDATE RESOURCES
-                    resources.map(o=>{
-                        return {
-
-                        };
-                    });
-                    resources.forEach(o => console.log(o.docker.stat));
-
+                    let cpus = [0, 0, 0, 0, 0];
+                    let memories = [0, 0, 0, 0, 0];
+                    let labels = ['', '', '', '', ''];
+                    for(let i =0; i < cpus.length && i < resources.length; i++) {
+                        cpus[i] = resources[i].docker.stat.cpu;
+                        memories[i] = resources[i].docker.stat.mem;
+                        labels[i] = resources[i].name;
+                    }
+                    chart.resource.usage.set('label', labels);
+                    chart.resource.usage.set(0, cpus);
+                    chart.resource.usage.set(1, memories);
                 }
             }
 
